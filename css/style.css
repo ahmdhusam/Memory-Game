@@ -1,0 +1,172 @@
+*{
+    box-sizing: border-box;
+}
+.container{
+    position: relative;
+    overflow: hidden;
+}
+.container .info,
+.result{
+    width: 80%;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: grey;
+    color: white;
+}
+.container .info{
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+.container .info input{
+    padding: 5px;
+    width: 300px;
+}
+.container .info input:focus{
+    border: 1px black solid;
+    outline: none;
+}
+.container .info #start{
+    padding: 5px;
+    width: 50px;
+}
+@media (max-width:700px){
+    .container .info{
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        height: fit-content;
+    }
+    .container .info #start{
+        width: 100px;
+        margin-left:100px ;
+    }
+}
+.container .pupup{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(5, 0, 0, 0.856);
+    position: absolute;
+    z-index: 3;
+    display: none;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;
+}
+.container .pupup.active{
+    display: flex;
+}
+.container .pupup > span{
+    width: 50%;
+    height: fit-content;
+    padding: 20px 30px;
+    background-color:grey;
+    color: white;
+    font-size: 50px;
+    text-align: center;
+}
+.container .pupup > span:not(:last-child){
+    margin-bottom: 50px;
+}
+.container .pupup #reload{
+    width: max-content;
+    background-color: red;
+    border: rgb(0, 0, 0) 5px solid;
+    cursor: pointer;
+}
+.container .parent{
+    width: 100%;
+    background-color: #eee;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: space-evenly;
+    padding: 30px;
+}
+.container .parent.removePointer{
+    pointer-events: none;
+}
+
+.container .parent .box{
+    position: relative;
+    transform-style: preserve-3d;
+    width: calc(90% / 8);
+    height: 150px;
+    transition:  1s ;
+    border: black solid 5px;
+    cursor: pointer;
+    transform-origin:left;
+}
+@media(max-width:700px){
+    .container .pupup > span{
+        width: 100%;
+    }
+    .container .parent .box{
+        width: calc(90% / 4);
+    }
+}
+.container .parent .box .front ,
+.container .parent .box .back{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+.container .parent .box .front{
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: rotateY(180deg);
+    backface-visibility: hidden;
+}
+.container .parent .box .front i{
+    color:#0075ff;
+    font-size:500%;
+}
+.container .parent .box .back{
+    background-color:grey;
+}
+.container .parent .box .back::after{
+    content: "?";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: black;
+    width: 100%;
+    height: 100%;
+    font-size: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+@media(max-width:700px){
+    .container .parent .box .front i{
+        font-size: 300%;
+    }
+    .container .parent .box .back::after{
+        font-size: 120px;
+    }
+}
+.container .parent .box.rotated,
+.container .parent .box.success{
+    transform: translateX(100%) rotateY(180deg) ;
+}
+.container .parent .box.success{
+    border: #0075ff 5px solid;
+    pointer-events: none;
+    cursor: none;
+}
+.result .boxRes{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.result .boxRes:not(:first-child){
+    margin-top: 5px;
+    padding: 5px;
+    background-color: rgb(199, 197, 197);
+}
